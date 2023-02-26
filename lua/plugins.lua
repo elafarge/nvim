@@ -58,29 +58,36 @@ function M.setup()
     -- Treesitter
     use {
       "nvim-treesitter/nvim-treesitter",
-      opt = true,
-      event = "BufReadPre",
-      run = ":TSUpdate",
-      config = function()
-        require("config.treesitter").setup()
-      end,
-      requires = {
-        { "nvim-treesitter/nvim-treesitter-textobjects", event = "BufReadPre" },
-        { "windwp/nvim-ts-autotag", event = "InsertEnter" },
-        { "JoosepAlviste/nvim-ts-context-commentstring", event = "BufReadPre" },
-        { "p00f/nvim-ts-rainbow", event = "BufReadPre" },
-        { "RRethy/nvim-treesitter-textsubjects", event = "BufReadPre" },
-        { "nvim-treesitter/playground", cmd = { "TSPlaygroundToggle" } },
-        {
-          "lewis6991/spellsitter.nvim",
-          config = function()
-            require("spellsitter").setup()
-          end,
-        },
-        { "nvim-treesitter/nvim-treesitter-context", event = "BufReadPre", disable = true },
-        -- { "yioneko/nvim-yati", event = "BufReadPre" },
-      },
+       run = ":TSUpdate",
+       config = function()
+         require("config.treesitter").setup()
+       end,
     }
+    -- use {
+    --   "nvim-treesitter/nvim-treesitter",
+    --   opt = true,
+    --   event = "BufReadPre",
+    --   run = ":TSUpdate",
+    --   config = function()
+    --     require("config.treesitter").setup()
+    --   end,
+    --   requires = {
+    --     { "nvim-treesitter/nvim-treesitter-textobjects", event = "BufReadPre" },
+    --     { "windwp/nvim-ts-autotag", event = "InsertEnter" },
+    --     { "JoosepAlviste/nvim-ts-context-commentstring", event = "BufReadPre" },
+    --     { "p00f/nvim-ts-rainbow", event = "BufReadPre" },
+    --     { "RRethy/nvim-treesitter-textsubjects", event = "BufReadPre" },
+    --     { "nvim-treesitter/playground", cmd = { "TSPlaygroundToggle" } },
+    --     {
+    --       "lewis6991/spellsitter.nvim",
+    --       config = function()
+    --         require("spellsitter").setup()
+    --       end,
+    --     },
+    --     { "nvim-treesitter/nvim-treesitter-context", event = "BufReadPre", disable = true },
+    --     -- { "yioneko/nvim-yati", event = "BufReadPre" },
+    --   },
+    -- }
 
     -- Better icons
     use {
@@ -154,6 +161,15 @@ function M.setup()
       cmd = { "MarkdownPreview" },
     }
 
+    use {
+      "SmiteshP/nvim-gps",
+      requires = "nvim-treesitter/nvim-treesitter",
+      module = "nvim-gps",
+      config = function()
+        require("nvim-gps").setup()
+      end,
+    }
+
     -- Status line
     use {
       "nvim-lualine/lualine.nvim",
@@ -194,7 +210,7 @@ function M.setup()
         -- "mason.nvim",
         -- "mason-lspconfig.nvim",
         -- "mason-tool-installer.nvim",
-        "lua-dev.nvim",
+        "folke/neodev.nvim",
         "vim-illuminate",
         "schemastore.nvim",
         "typescript.nvim",
@@ -210,7 +226,7 @@ function M.setup()
         "RRethy/vim-illuminate",
         -- "WhoIsSethDaniel/mason-tool-installer.nvim",
         "b0o/schemastore.nvim",
-        "folke/lua-dev.nvim",
+        "folke/neodev.nvim",
         "ray-x/lsp_signature.nvim",
         "jose-elias-alvarez/typescript.nvim",
 
@@ -258,17 +274,6 @@ function M.setup()
         require("config.gitsigns").setup()
       end,
     }
-    use {
-      "tpope/vim-fugitive",
-      opt = true,
-      cmd = { "Git", "GBrowse", "Gdiffsplit", "Gvdiffsplit" },
-      requires = {
-        "tpope/vim-rhubarb",
-        "idanarye/vim-merginal",
-        --[[ "rhysd/committia.vim", ]]
-      },
-      -- wants = { "vim-rhubarb" },
-    }
     use { "rbong/vim-flog", cmd = { "Flog", "Flogsplit", "Floggit" }, wants = { "vim-fugitive" } }
     use {
       "ruifm/gitlinker.nvim",
@@ -315,32 +320,32 @@ function M.setup()
     use 'majutsushi/tagbar'
 
     -- { 'neoclide/coc.nvim', 'branch': 'release' }
-    use 'puremourning/vimspector'
+    -- use 'puremourning/vimspector'
 
     -- Colorschemes and themes
     use 'arcticicestudio/nord-vim'
     use 'altercation/vim-colors-solarized'
 
     -- Apparently cool but I should dive deeper into them at some point
-    use 'SirVer/ultisnips'
+    -- use 'SirVer/ultisnips'
 
     -- Show off plug ins (that also help coding actually)
-    use 'airblade/vim-gitgutter'
+    -- use 'airblade/vim-gitgutter'
 
     -- Language plugins
-    use 'lervag/vimtex'
-    use 'hashivim/vim-terraform'
-    use 'fatih/vim-go'
-    use 'cespare/vim-toml'
-    use 'rust-lang/rust.vim'
+    -- use 'lervag/vimtex'
+    -- use 'hashivim/vim-terraform'
+    -- use 'fatih/vim-go'
+    -- use 'cespare/vim-toml'
+    -- use 'rust-lang/rust.vim'
     -- use 'OmniSharp/omnisharp-vim'
-    use 'towolf/vim-helm'
+    -- use 'towolf/vim-helm'
     -- use 'Shadowsith/vim-dotnet'
-    use 'kongo2002/fsharp-vim'
-    use 'ianks/vim-tsx'
-    use 'leafgarland/typescript-vim'
-    use 'lifepillar/pgsql.vim'
-    use 'chr4/nginx.vim'
+    -- use 'kongo2002/fsharp-vim'
+    -- use 'ianks/vim-tsx'
+    -- use 'leafgarland/typescript-vim'
+    -- use 'lifepillar/pgsql.vim'
+    -- use 'chr4/nginx.vim'
 
     -- Cool tools for noobs I should get rid of at some point
     -- use 'terryma/vim-multiple-cursors'
