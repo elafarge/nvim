@@ -177,7 +177,7 @@ function M.setup()
       config = function()
        require("config.lualine").setup()
       end,
-      requires = { "nvim-web-devicons" },
+      requires = { "nvim-web-devicons", "nvim-gps" },
     }
 
     -- File browser
@@ -210,7 +210,6 @@ function M.setup()
         -- "mason.nvim",
         -- "mason-lspconfig.nvim",
         -- "mason-tool-installer.nvim",
-        "folke/neodev.nvim",
         "vim-illuminate",
         "schemastore.nvim",
         "typescript.nvim",
@@ -226,7 +225,6 @@ function M.setup()
         "RRethy/vim-illuminate",
         -- "WhoIsSethDaniel/mason-tool-installer.nvim",
         "b0o/schemastore.nvim",
-        "folke/neodev.nvim",
         "ray-x/lsp_signature.nvim",
         "jose-elias-alvarez/typescript.nvim",
 
