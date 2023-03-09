@@ -2,6 +2,11 @@ local M = {}
 
 function M.setup()
   require("nvim-tree").setup {
+    actions = {
+      open_file = {
+        resize_window = false,
+      },
+    },
     disable_netrw = true,
     hijack_netrw = true,
     update_focused_file = {
@@ -35,6 +40,9 @@ function M.setup()
           { key = "x", action = "cut", mode = "n" },
           { key = "y", action = "copy", mode = "n" },
           { key = "p", action = "paste", mode = "n" },
+
+          -- Cd into folder
+          { key = "c", action = "cd", mode = "n" },
         }
       },
     },
