@@ -7,29 +7,6 @@ local servers = {
   pyright = {},
   rust_analyzer = {},
   omnisharp = {},
-  -- sumneko_lua = {
-  --   settings = {
-  --     Lua = {
-  --       runtime = {
-  --         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-  --         version = "LuaJIT",
-  --         -- Setup your lua path
-  --         path = vim.split(package.path, ";"),
-  --       },
-  --       diagnostics = {
-  --         -- Get the language server to recognize the `vim` global
-  --         globals = { "vim" },
-  --       },
-  --       workspace = {
-  --         -- Make the server aware of Neovim runtime files
-  --         library = {
-  --           [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-  --           [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
   tsserver = {},
   vimls = {},
   terraformls = {},
@@ -74,6 +51,52 @@ local opts = {
 require("config.lsp.handlers").setup()
 
 function M.setup()
+
+    -- LSP handlers configuration
+  local lsp = {
+    float = {
+      focusable = true,
+      style = "minimal",
+      border = "rounded",
+    },
+    diagnostic = {
+      -- virtual_text = true,
+      virtual_text = { spacing = 4, prefix = "●" },
+      underline = true,
+      update_in_insert = false,
+      severity_sort = true,
+      float = {
+        focusable = true,
+        style = "minimal",
+        border = "rounded",
+      },
+    },
+  }
+
+  -- Diagnostic signs
+  local diagnostic_signs = {
+    { name = "DiagnosticSignError", text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignInfo", text = "" },
+  }
+  for _, sign in ipairs(diagnostic_signs) do
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
+  end
+
+  -- Diagnostic configuration
+  vim.diagnostic.config(lsp.diagnostic)
+
+  -- Hover configuration
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, lsp.float)
+
+  -- Signature help configuration
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, lsp.float)
+
+  -- null-ls
+  require("config.lsp.null-ls").setup(opts)
+
+  -- Installer
   require("config.lsp.installer").setup(servers, opts)
 end
 

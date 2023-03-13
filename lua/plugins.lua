@@ -23,7 +23,7 @@ function M.setup()
     if fn.empty(fn.glob(install_path)) > 0 then
       packer_bootstrap = fn.system {
         "git",
-        "clone",
+        "clone", 
         "--depth",
         "1",
         "https://github.com/wbthomason/packer.nvim",
@@ -143,13 +143,13 @@ function M.setup()
     }
 
     -- Easy motion
-    use {
-      "ggandor/lightspeed.nvim",
-      keys = { "s", "S", "f", "F", "t", "T" },
-      config = function()
-        require("lightspeed").setup {}
-      end,
-    }
+    -- use {
+    --   "ggandor/lightspeed.nvim",
+    --   keys = { "s", "S", "f", "F", "t", "T" },
+    --   config = function()
+    --     require("lightspeed").setup {}
+    --   end,
+    -- }
 
     -- Markdown
     use {
@@ -204,12 +204,13 @@ function M.setup()
       opt = true,
       event = "BufReadPre",
       wants = {
-        "nvim-lsp-installer",
+        -- "nvim-lsp-installer",
         "lsp_signature.nvim",
         "coq_nvim",
-        -- "mason.nvim",
-        -- "mason-lspconfig.nvim",
-        -- "mason-tool-installer.nvim",
+        "neodev.nvim",
+        "mason.nvim",
+        "mason-lspconfig.nvim",
+        "mason-tool-installer.nvim",
         "vim-illuminate",
         "null-ls.nvim", 
         "schemastore.nvim",
@@ -220,12 +221,13 @@ function M.setup()
         require("config.lsp").setup()
       end,
       requires = {
-        "williamboman/nvim-lsp-installer",
-        -- "williamboman/mason.nvim",
-        -- "williamboman/mason-lspconfig.nvim",
+        -- "williamboman/nvim-lsp-installer",
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
         "RRethy/vim-illuminate",
         "jose-elias-alvarez/null-ls.nvim",
-        -- "WhoIsSethDaniel/mason-tool-installer.nvim",
+        "folke/neodev.nvim",
         "b0o/schemastore.nvim",
         "ray-x/lsp_signature.nvim",
         "jose-elias-alvarez/typescript.nvim",

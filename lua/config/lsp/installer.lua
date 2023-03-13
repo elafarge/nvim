@@ -1,32 +1,62 @@
-local lsp_installer_servers = require "nvim-lsp-installer.servers"
-local utils = require "utils"
-
 local M = {}
 
 function M.setup(servers, options)
-  for server_name, _ in pairs(servers) do
-    local server_available, server = lsp_installer_servers.get_server(server_name)
+  local lspconfig = require "lspconfig"
+  local icons = require "config.icons"
 
-    if server_available then
-      server:on_ready(function()
-        local opts = vim.tbl_deep_extend("force", options, servers[server.name] or {})
+  require("mason").setup {
+    ui = {
+      icons = {
+        package_installed = icons.server_installed,
+        package_pending = icons.server_pending,
+        package_uninstalled = icons.server_uninstalled,
+      },
+    },
+  }
 
-        -- if server.name == "sumneko_lua" then
-        --   opts = require("neodev").setup { lspconfig = opts }
-        -- end
+  require("mason-tool-installer").setup {
+    ensure_installed = { "stylua", "shfmt", "shellcheck", "omnisharp", "prettierd" },
+    auto_update = false,
+    run_on_start = true,
+  }
 
-        local coq = require "coq"
-        server:setup(coq.lsp_ensure_capabilities(opts))
-      end)
+  require("mason-lspconfig").setup {
+    ensure_installed = vim.tbl_keys(servers),
+    automatic_installation = false,
+  }
 
-      if not server:is_installed() then
-        utils.info("Installing " .. server.name)
-        server:install()
-      end
-    else
-      utils.error(server)
-    end
-  end
+  -- Package installation folder
+  local install_root_dir = vim.fn.stdpath "data" .. "/mason"
+
+  require("mason-lspconfig").setup_handlers {
+    function(server_name)
+      local opts = vim.tbl_deep_extend("force", options, servers[server_name] or {})
+      lspconfig[server_name].setup { opts }
+    end,
+    ["jdtls"] = function()
+      -- print "jdtls is handled by nvim-jdtls"
+    end,
+    ["lua_ls"] = function()
+      local opts = vim.tbl_deep_extend("force", options, servers["lua_ls"] or {})
+      lspconfig.lua_ls.setup({
+        settings = {
+          Lua = {
+            completion = {
+              callSnippet = "Replace"
+            }
+          }
+        }
+      })
+    end,
+    ["tsserver"] = function()
+      local opts = vim.tbl_deep_extend("force", options, servers["tsserver"] or {})
+      require("typescript").setup {
+        disable_commands = false,
+        debug = false,
+        server = opts,
+      }
+    end,
+  }
 end
 
 return M

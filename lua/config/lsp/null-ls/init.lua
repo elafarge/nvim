@@ -22,12 +22,12 @@ local sources = {
   -- formatting
   b.formatting.prettierd,
   b.formatting.shfmt,
-  with_root_file(b.formatting.tylua, "stylua.toml"),
+  with_root_file(b.formatting.stylua, "stylua.toml"),
 
   -- diagnostics
-  b.diagnostics.write_good,
+  -- b.diagnostics.write_good,
   -- b.diagnostics.markdownlint,
-  bdiagnostics.eslint_d,
+  b.diagnostics.eslint_d,
   b.diagnostics.tsc,
   with_root_file(b.diagnostics.selene, "selene.toml"),
   with_diagnostics_code(b.diagnostics.shellcheck),
