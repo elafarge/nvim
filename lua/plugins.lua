@@ -211,7 +211,7 @@ function M.setup()
         -- "mason-lspconfig.nvim",
         -- "mason-tool-installer.nvim",
         "vim-illuminate",
-        "null-ls",
+        "null-ls.nvim", 
         "schemastore.nvim",
         "typescript.nvim",
         "nvim-navic",
