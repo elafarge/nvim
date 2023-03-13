@@ -20,6 +20,12 @@ function M.setup()
       enable = true,
       show_on_dirs = true,
     },
+    tab = {
+      sync = {
+        open = true,
+        close = false,
+      },
+    },
     view = {
       number = true,
       relativenumber = true,
