@@ -23,7 +23,7 @@ function M.setup()
     if fn.empty(fn.glob(install_path)) > 0 then
       packer_bootstrap = fn.system {
         "git",
-        "clone", 
+        "clone",
         "--depth",
         "1",
         "https://github.com/wbthomason/packer.nvim",
@@ -192,10 +192,44 @@ function M.setup()
        end,
     }
 
-    -- Fuzzy finder
+    -- Fuzzy finders
     use {
      "ibhagwan/fzf-lua",
       requires = { "kyazdani42/nvim-web-devicons" },
+    }
+
+    use {
+      "nvim-telescope/telescope.nvim",
+      opt = true,
+      config = function()
+        require("config.telescope").setup()
+      end,
+      cmd = { "Telescope" },
+      module = "telescope",
+      keys = { "<leader>f", "<leader>p" },
+      wants = {
+        "plenary.nvim",
+        "popup.nvim",
+        "telescope-fzf-native.nvim",
+        "telescope-project.nvim",
+        "telescope-repo.nvim",
+        "telescope-file-browser.nvim",
+        "project.nvim",
+      },
+      requires = {
+        "nvim-lua/popup.nvim",
+        "nvim-lua/plenary.nvim",
+        { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+        "nvim-telescope/telescope-project.nvim",
+        "cljoly/telescope-repo.nvim",
+        "nvim-telescope/telescope-file-browser.nvim",
+        {
+          "ahmedkhalf/project.nvim",
+          config = function()
+            require("project_nvim").setup {}
+          end,
+        },
+      },
     }
 
     -- LSP
@@ -256,6 +290,27 @@ function M.setup()
         { "ms-jpq/coq.artifacts", branch = "artifacts" },
         { "ms-jpq/coq.thirdparty", branch = "3p", module = "coq_3p" },
       },
+    }
+
+    use {
+      "folke/trouble.nvim",
+      event = "BufReadPre",
+      wants = "nvim-web-devicons",
+      cmd = { "TroubleToggle", "Trouble" },
+      config = function()
+        require("trouble").setup {
+          use_diagnostic_signs = true,
+        }
+      end,
+    }
+
+    use {
+      "tami5/lspsaga.nvim",
+      event = "VimEnter",
+      cmd = { "Lspsaga" },
+      config = function()
+        require("lspsaga").setup {}
+      end,
     }
 
     -- Git

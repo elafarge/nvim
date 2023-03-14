@@ -10,7 +10,8 @@ function M.setup()
     disable_netrw = true,
     hijack_netrw = true,
     update_focused_file = {
-      enable = true
+      enable = true,
+      update_cwd = true,
     },
     renderer = {
       add_trailing = true,
@@ -55,7 +56,10 @@ function M.setup()
     filters = {
       custom = { ".git" },
     },
+        update_cwd = true,
   }
+
+  vim.g.nvim_tree_respect_buf_cwd = 1
 end
 
 return M

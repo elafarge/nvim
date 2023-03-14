@@ -19,11 +19,16 @@ local function keymappings(client, bufnr)
   local keymap_l = {
     l = {
       name = "Code",
-      r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-      a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
-      d = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Line Diagnostics" },
+      F = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format Document" },
+      R = { "<cmd>Trouble lsp_references<cr>", "Trouble References" },
+      a = { "<cmd>Telescope lsp_code_actions<CR>", "Code Action" },
+      d = { "<cmd>Telescope diagnostics<CR>", "Diagnostics" },
+      f = { "<cmd>Lspsaga lsp_finder<CR>", "Finder" },
       i = { "<cmd>LspInfo<CR>", "Lsp Info" },
-      f = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format Document" }
+      n = { "<cmd>Lspsaga rename<CR>", "Rename" },
+      r = { "<cmd>Telescope lsp_references<CR>", "Diagnostics" },
+      t = { "<cmd>TroubleToggle<CR>", "Trouble" },
+
     },
   }
   if client.server_capabilities.document_formatting then
