@@ -28,8 +28,10 @@ function M.setup(client, buf)
 
   local enable = false
   if M.has_formatter(filetype) then
+    utils.info("Null ls formatting", "Formatting")
     enable = client.name == "null-ls"
   else
+    utils.info("LSP formatting", "Formatting")
     enable = not (client.name == "null-ls")
   end
 

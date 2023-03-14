@@ -43,6 +43,9 @@ function M.setup(servers, options)
           Lua = {
             completion = {
               callSnippet = "Replace"
+            },
+            diagnostics = {
+              globals = { 'vim' }
             }
           }
         }
