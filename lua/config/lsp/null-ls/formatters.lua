@@ -28,16 +28,14 @@ function M.setup(client, buf)
 
   local enable = false
   if M.has_formatter(filetype) then
-    utils.info("Null ls formatting", "Formatting")
     enable = client.name == "null-ls"
   else
-    utils.info("LSP formatting", "Formatting")
     enable = not (client.name == "null-ls")
   end
 
-  client.resolved_capabilities.document_formatting = enable
-  client.resolved_capabilities.document_range_formatting = enable
-  if client.resolved_capabilities.document_formatting then
+  client.server_capabilities.documentFormattingProvider = enable
+  client.server_capabilities.documentRangeFormattingProvider = enable
+  if client.server_capabilities.documentFormattingProvider then
     vim.cmd [[
       augroup LspFormat
         autocmd! * <buffer>
