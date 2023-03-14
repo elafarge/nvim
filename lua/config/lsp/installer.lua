@@ -46,7 +46,14 @@ function M.setup(servers, options)
             },
             diagnostics = {
               globals = { 'vim' }
-            }
+            },
+            workspace = {
+              -- Make the server aware of Neovim runtime files
+              library = {
+                [vim.fn.expand "/usr/share/nvim/runtime/lua"] = true,
+                [vim.fn.expand "/usr/share/nvim/runtime/lua/vim/lsp"] = true,
+              },
+            },
           }
         }
       })
