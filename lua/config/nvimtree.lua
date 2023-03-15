@@ -30,6 +30,7 @@ function M.setup()
     view = {
       number = true,
       relativenumber = true,
+      width = {},
       mappings = {
         list = {
           -- Edit directly

@@ -38,25 +38,7 @@ function M.setup(servers, options)
     end,
     ["lua_ls"] = function()
       local opts = vim.tbl_deep_extend("force", options, servers["lua_ls"] or {})
-      lspconfig.lua_ls.setup({
-        settings = {
-          Lua = {
-            completion = {
-              callSnippet = "Replace"
-            },
-            diagnostics = {
-              globals = { 'vim' }
-            },
-            workspace = {
-              -- Make the server aware of Neovim runtime files
-              library = {
-                [vim.fn.expand "/usr/share/nvim/runtime/lua"] = true,
-                [vim.fn.expand "/usr/share/nvim/runtime/lua/vim/lsp"] = true,
-              },
-            },
-          }
-        }
-      })
+      lspconfig.lua_ls.setup(opts)
     end,
     ["tsserver"] = function()
       local opts = vim.tbl_deep_extend("force", options, servers["tsserver"] or {})
@@ -65,6 +47,15 @@ function M.setup(servers, options)
         debug = false,
         server = opts,
       }
+    end,
+    ["yamlls"] = function()
+      lspconfig.yamlls.setup({
+        settings = {
+          yaml = {
+            keyOrdering = false,
+          },
+        },
+      })
     end,
   }
 end

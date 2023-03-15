@@ -4,13 +4,32 @@ local servers = {
   gopls = {},
   html = {},
   jsonls = {},
-  pyright = {},
   rust_analyzer = {},
   omnisharp = {},
   tsserver = {},
   vimls = {},
   terraformls = {},
   tflint = {},
+  lua_ls = {
+    settings = {
+      Lua = {
+        completion = {
+          callSnippet = "Replace"
+        },
+        diagnostics = {
+          globals = { 'vim' }
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = {
+            [vim.fn.expand "/usr/share/nvim/runtime/lua"] = true,
+            [vim.fn.expand "/usr/share/nvim/runtime/lua/vim/lsp"] = true,
+          },
+        },
+      }
+    }
+  },
+  yamlls = {},
 }
 
 -- local lsp_signature = require "lsp_signature"
@@ -38,7 +57,6 @@ local function on_attach(client, bufnr)
 
   -- Configure formatting
   require("config.lsp.null-ls.formatters").setup(client, bufnr)
-
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -55,8 +73,7 @@ local opts = {
 require("config.lsp.handlers").setup()
 
 function M.setup()
-
-    -- LSP handlers configuration
+  -- LSP handlers configuration
   local lsp = {
     float = {
       focusable = true,
@@ -80,9 +97,9 @@ function M.setup()
   -- Diagnostic signs
   local diagnostic_signs = {
     { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
+    { name = "DiagnosticSignWarn",  text = "" },
+    { name = "DiagnosticSignHint",  text = "" },
+    { name = "DiagnosticSignInfo",  text = "" },
   }
   for _, sign in ipairs(diagnostic_signs) do
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
