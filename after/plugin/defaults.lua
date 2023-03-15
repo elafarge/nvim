@@ -8,23 +8,23 @@ local opt = vim.opt
 vim.keymap.set("", "<Space>", "<Nop>", { noremap = true, silent = true })
 g.mapleader = " "
 g.maplocalleader = ","
-g.vimsyn_embed = "lPr" -- Syntax embedding for Lua, Python and Ruby
+g.vimsyn_embed = "lPr"        -- Syntax embedding for Lua, Python and Ruby
 
-opt.termguicolors = true -- Enable colors in terminal
-opt.hlsearch = true --Set highlight on search
-opt.number = true --Make line numbers default
-opt.relativenumber = false --Disable relative number default
-opt.mouse = "a" --Enable mouse mode
-opt.breakindent = true --Enable break indent
-opt.undofile = true --Save undo history
-opt.ignorecase = true --Case insensitive searching unless /C or capital in search
-opt.smartcase = true -- Smart case
-opt.updatetime = 250 --Decrease update time
-opt.signcolumn = "yes" -- Always show sign column
+opt.termguicolors = true      -- Enable colors in terminal
+opt.hlsearch = true           --Set highlight on search
+opt.number = true             --Make line numbers default
+opt.relativenumber = false    --Disable relative number default
+opt.mouse = "a"               --Enable mouse mode
+opt.breakindent = true        --Enable break indent
+opt.undofile = true           --Save undo history
+opt.ignorecase = true         --Case insensitive searching unless /C or capital in search
+opt.smartcase = true          -- Smart case
+opt.updatetime = 250          --Decrease update time
+opt.signcolumn = "yes"        -- Always show sign column
 opt.clipboard = "unnamedplus" -- Access system clipboard
-opt.timeoutlen = 300 --	Time in milliseconds to wait for a mapped sequence to complete.
-opt.showmode = false -- Do not need to show the mode. We use the statusline instead.
-opt.scrolloff = 8 -- Lines of context
+opt.timeoutlen = 300          --	Time in milliseconds to wait for a mapped sequence to complete.
+opt.showmode = false          -- Do not need to show the mode. We use the statusline instead.
+opt.scrolloff = 8             -- Lines of context
 -- opt.scrolloff = 999 -- Lines of context
 -- opt.sidescrolloff = 999
 opt.joinspaces = false -- No double spaces with join after a dot
@@ -110,22 +110,6 @@ opt.wildignore:append "**/.terraform/*"
 opt.wildignore:append "**/.git/*"
 opt.wildignore:append "**/build/*"
 opt.wildignore:append "**/dist/*"
-
--- vim.cmd [[set path=.,,,$PWD/**]] -- Alternatively set the path
-
--- TODO: get rid of these by using better plugins
-vim.g.airline_powerline_fonts = 1
-vim.api.nvim_set_keymap('n', '<F6>', ':TagbarToggle<CR>', { noremap = true })
-
-vim.api.nvim_set_keymap('n', '<S-h>', ':wincmd h<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<S-j>', ':wincmd j<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<S-k>', ':wincmd k<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<S-l>', ':wincmd l<CR>', { noremap = true })
-
-vim.api.nvim_set_keymap('n', '<C-h>', ':vertical resize +5<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-j>', ':vertical resize -5<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-k>', ':resize +3<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-l>', ':resize -3<CR>', { noremap = true })
 
 vim.cmd [[set background=dark]]
 vim.cmd [[colorscheme nord]]
