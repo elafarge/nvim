@@ -26,9 +26,8 @@ local function keymappings(client, bufnr)
       f = { "<cmd>Lspsaga lsp_finder<CR>", "Finder" },
       i = { "<cmd>LspInfo<CR>", "Lsp Info" },
       n = { "<cmd>Lspsaga rename<CR>", "Rename" },
-      r = { "<cmd>Telescope lsp_references<CR>", "Diagnostics" },
+      r = { "<cmd>Telescope lsp_references<CR>", "References" },
       t = { "<cmd>TroubleToggle<CR>", "Trouble" },
-
     },
   }
   if client.server_capabilities.document_formatting then

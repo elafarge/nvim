@@ -58,10 +58,10 @@ function M.setup()
     -- Treesitter
     use {
       "nvim-treesitter/nvim-treesitter",
-       run = ":TSUpdate",
-       config = function()
-         require("config.treesitter").setup()
-       end,
+      run = ":TSUpdate",
+      config = function()
+        require("config.treesitter").setup()
+      end,
     }
     -- use {
     --   "nvim-treesitter/nvim-treesitter",
@@ -175,26 +175,26 @@ function M.setup()
       "nvim-lualine/lualine.nvim",
       event = "VimEnter",
       config = function()
-       require("config.lualine").setup()
+        require("config.lualine").setup()
       end,
       requires = { "nvim-web-devicons", "nvim-gps" },
     }
 
     -- File browser
     use {
-     "kyazdani42/nvim-tree.lua",
-     requires = {
-       "kyazdani42/nvim-web-devicons",
-     },
-     cmd = { "NvimTreeToggle", "NvimTreeClose" },
-       config = function()
-         require("config.nvimtree").setup()
-       end,
+      "kyazdani42/nvim-tree.lua",
+      requires = {
+        "kyazdani42/nvim-web-devicons",
+      },
+      cmd = { "NvimTreeToggle", "NvimTreeClose" },
+      config = function()
+        require("config.nvimtree").setup()
+      end,
     }
 
     -- Fuzzy finders
     use {
-     "ibhagwan/fzf-lua",
+      "ibhagwan/fzf-lua",
       requires = { "kyazdani42/nvim-web-devicons" },
     }
 
@@ -246,7 +246,7 @@ function M.setup()
         "mason-lspconfig.nvim",
         "mason-tool-installer.nvim",
         "vim-illuminate",
-        "null-ls.nvim", 
+        "null-ls.nvim",
         "schemastore.nvim",
         "typescript.nvim",
         "nvim-navic",
@@ -287,8 +287,8 @@ function M.setup()
         require("config.coq").setup()
       end,
       requires = {
-        { "ms-jpq/coq.artifacts", branch = "artifacts" },
-        { "ms-jpq/coq.thirdparty", branch = "3p", module = "coq_3p" },
+        { "ms-jpq/coq.artifacts",  branch = "artifacts" },
+        { "ms-jpq/coq.thirdparty", branch = "3p",       module = "coq_3p" },
       },
     }
 
@@ -356,7 +356,7 @@ function M.setup()
       end,
     }
     use { "f-person/git-blame.nvim", cmd = { "GitBlameToggle" } }
-        use {
+    use {
       "tanvirtin/vgit.nvim",
       config = function()
         require("vgit").setup()
@@ -372,7 +372,7 @@ function M.setup()
     -- Old stylish plugings, maybe to be replaced with nicer, faster more recent
     -- lua ones
     -- use 'scrooloose/nerdtree'
-    -- use 'tpope/vim-fugitive'
+    use 'tpope/vim-fugitive'
     -- use 'Xuyuanp/nerdtree-git-plugin'
     use 'majutsushi/tagbar'
 
