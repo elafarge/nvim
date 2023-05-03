@@ -162,11 +162,10 @@ function M.setup()
     }
 
     use {
-      "SmiteshP/nvim-gps",
-      requires = "nvim-treesitter/nvim-treesitter",
-      module = "nvim-gps",
+      "SmiteshP/nvim-navic",
+      requires = "neovim/nvim-lspconfig",
       config = function()
-        require("nvim-gps").setup()
+        require("nvim-navic").setup()
       end,
     }
 
@@ -177,7 +176,7 @@ function M.setup()
       config = function()
         require("config.lualine").setup()
       end,
-      requires = { "nvim-web-devicons", "nvim-gps" },
+      requires = { "nvim-web-devicons", "nvim-navic" },
     }
 
     -- File browser

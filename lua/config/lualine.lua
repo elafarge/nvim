@@ -80,7 +80,7 @@ local function lsp_progress(_, is_active)
 end
 
 function M.setup()
-  local gps = require "nvim-gps"
+  local navic = require "nvim-navic"
 
   require("lualine").setup {
     options = {
@@ -96,12 +96,12 @@ function M.setup()
       lualine_b = { "branch", "diff", "diagnostics" },
       lualine_c = {
         {
-          gps.get_location,
-          cond = gps.is_available,
+          navic.get_location,
+          cond = navic.is_available,
           color = { fg = "#f3ca28" },
         },
         { separator },
-        { lsp_client, icon = " ", color = { fg = colors.violet, gui = "bold" } },
+        { lsp_client,  icon = " ", color = { fg = colors.violet, gui = "bold" } },
         { lsp_progress },
       },
       lualine_x = { "filename", "encoding", "fileformat", "filetype" },

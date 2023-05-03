@@ -57,6 +57,12 @@ local function on_attach(client, bufnr)
 
   -- Configure formatting
   require("config.lsp.null-ls.formatters").setup(client, bufnr)
+
+  -- Configure navic
+  local navic = require("nvim-navic")
+  if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
