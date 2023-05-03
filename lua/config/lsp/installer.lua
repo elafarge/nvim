@@ -77,6 +77,12 @@ function M.setup(servers, options)
 
           -- Configure formatting
           require("config.lsp.null-ls.formatters").setup(client, bufnr)
+
+          -- Configure navic
+          local navic = require("nvim-navic")
+          if client.server_capabilities.documentSymbolProvider then
+            navic.attach(client, bufnr)
+          end
         end
       })
     end,

@@ -80,7 +80,7 @@ local function lsp_progress(_, is_active)
 end
 
 function M.setup()
-  local navic = require "nvim-navic"
+  local navic = require("nvim-navic")
 
   require("lualine").setup {
     options = {
