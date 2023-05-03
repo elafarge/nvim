@@ -55,7 +55,6 @@ local function signature_help(client, bufnr)
   end
   local trigger_chars = shp.triggerCharacters
   for _, char in ipairs(trigger_chars) do
-    print(char)
     vim.keymap.set("i", char, function()
       vim.defer_fn(function()
         pcall(vim.lsp.buf.signature_help)
