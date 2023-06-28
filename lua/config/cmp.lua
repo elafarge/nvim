@@ -14,7 +14,7 @@ function M.setup()
     experimental = { native_menu = false, ghost_text = false },
     snippet = {
       expand = function(args)
-        require("luasnip").lsp_expand(args.body)
+        luasnip.lsp_expand(args.body)
       end,
     },
     formatting = {
@@ -77,35 +77,34 @@ function M.setup()
     sources = {
       { name = "nvim_lsp" },
       { name = "treesitter" },
-      { name = "buffer" },
+      -- { name = "buffer" },
       { name = "luasnip" },
-      { name = "nvim_lua" },
+      -- { name = "nvim_lua" },
       { name = "path" },
-      { name = "spell" },
-      { name = "emoji" },
-      { name = "calc" },
+      -- { name = "spell" },
+      -- { name = "emoji" },
+      -- { name = "calc" },
     },
-    documentation = {
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-      winhighlight = "NormalFloat:NormalFloat,FloatBorder:TelescopeBorder",
+    window = {
+      documentation = cmp.config.window.bordered(),
     },
   }
 
   -- Use buffer source for `/`
-  cmp.setup.cmdline("/", {
-    sources = {
-      { name = "buffer" },
-    },
-  })
+  -- cmp.setup.cmdline("/", {
+  --   sources = {
+  --     { name = "buffer" },
+  --   },
+  -- })
 
   -- Use cmdline & path source for ':'
-  cmp.setup.cmdline(":", {
-    sources = cmp.config.sources({
-      { name = "path" },
-    }, {
-      { name = "cmdline" },
-    }),
-  })
+  -- cmp.setup.cmdline(":", {
+  --   sources = cmp.config.sources({
+  --     { name = "path" },
+  --   }, {
+  --     { name = "cmdline" },
+  --   }),
+  -- })
 end
 
 return M
