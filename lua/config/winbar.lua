@@ -56,14 +56,14 @@ function M.get_winbar()
 
   if navic.is_available() then
     return "%#WinBarSeparator#"
-      .. "%="
-      .. ""
-      .. "%*"
-      .. get_modified()
-      .. get_location()
-      .. "%#WinBarSeparator#"
-      .. ""
-      .. "%*"
+        .. "%="
+        .. ""
+        .. "%*"
+        .. get_modified()
+        .. get_location()
+        .. "%#WinBarSeparator#"
+        .. ""
+        .. "%*"
   else
     return "%#WinBarSeparator#" .. "%=" .. "" .. "%*" .. get_modified() .. "%#WinBarSeparator#" .. "" .. "%*"
   end

@@ -24,6 +24,10 @@ local sources = {
   b.formatting.shfmt,
   with_root_file(b.formatting.stylua, "stylua.toml"),
 
+  b.formatting.gofmt,
+  b.formatting.goimports,
+  b.formatting.golines,
+
   -- diagnostics
   -- b.diagnostics.write_good,
   -- b.diagnostics.markdownlint,
@@ -31,10 +35,13 @@ local sources = {
   b.diagnostics.tsc,
   with_root_file(b.diagnostics.selene, "selene.toml"),
   with_diagnostics_code(b.diagnostics.shellcheck),
+  b.diagnostics.golangci_lint,
+  b.diagnostics.gospel,
 
   -- code actions
   b.code_actions.gitsigns,
   b.code_actions.gitrebase,
+  b.code_actions.refactoring,
 
   -- hover
   b.hover.dictionary,
@@ -52,4 +59,3 @@ function M.setup(opts)
 end
 
 return M
-

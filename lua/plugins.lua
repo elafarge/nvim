@@ -380,7 +380,7 @@ function M.setup()
 
     -- Colorschemes and themes
     use 'arcticicestudio/nord-vim'
-    use 'altercation/vim-colors-solarized'
+    -- use 'altercation/vim-colors-solarized'
 
     -- Apparently cool but I should dive deeper into them at some point
     -- use 'SirVer/ultisnips'

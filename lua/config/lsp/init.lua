@@ -5,7 +5,21 @@ local servers = {
   html = {},
   jsonls = {},
   rust_analyzer = {},
-  omnisharp = {},
+  -- csharp_ls = {},
+  omnisharp = {
+    on_attach = function(client)
+      local tokenModifiers = client.server_capabilities.semanticTokensProvider.legend.tokenModifiers
+      for i, v in ipairs(tokenModifiers) do
+        tokenModifiers[i] = v:gsub(' ', '_'):gsub('-_', '')
+      end
+      local tokenTypes = client.server_capabilities.semanticTokensProvider.legend.tokenTypes
+      for i, v in ipairs(tokenTypes) do
+        tokenTypes[i] = v:gsub(' ', '_'):gsub('-_', '')
+      end
+      client.server_capabilities.semanticTokensProvider.legend.tokenModifiers = tokenModifiers
+      client.server_capabilities.semanticTokensProvider.legend.tokenTypes = tokenTypes
+    end
+  },
   tsserver = {},
   vimls = {},
   terraformls = {},

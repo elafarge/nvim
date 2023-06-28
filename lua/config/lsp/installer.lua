@@ -15,7 +15,7 @@ function M.setup(servers, options)
   }
 
   require("mason-tool-installer").setup {
-    ensure_installed = { "stylua", "shfmt", "shellcheck", "omnisharp", "prettierd" },
+    ensure_installed = { "stylua", "shfmt", "shellcheck", "omnisharp", "prettierd", "gospel", "golangci-lint" },
     auto_update = true,
     run_on_start = true,
   }
