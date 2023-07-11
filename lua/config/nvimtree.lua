@@ -113,7 +113,7 @@ function M.setup()
     view = {
       number = true,
       relativenumber = true,
-      width = {},
+      width = 30,
     },
     filters = {
       custom = { ".git" },

@@ -112,4 +112,4 @@ opt.wildignore:append "**/build/*"
 opt.wildignore:append "**/dist/*"
 
 vim.cmd [[set background=dark]]
-vim.cmd [[colorscheme nord]]
+vim.cmd [[colorscheme catppuccin-frappe]]

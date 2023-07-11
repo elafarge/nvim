@@ -366,6 +366,7 @@ function M.setup()
     'majutsushi/tagbar',
 
     -- Colorschemes and themes
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     'arcticicestudio/nord-vim',
     -- 'altercation/vim-colors-solarized',
 
