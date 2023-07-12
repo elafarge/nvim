@@ -23,6 +23,8 @@ function M.setup()
           buffer = "[Buffer]",
           luasnip = "[Snip]",
           nvim_lua = "[Lua]",
+          nvim_lsp = "[Lang]",
+          copilot = "[Copilot]",
           treesitter = "[Treesitter]",
         })[entry.source.name]
         return vim_item
@@ -76,7 +78,8 @@ function M.setup()
     },
     sources = {
       { name = "nvim_lsp" },
-      { name = "treesitter" },
+      { name = "copilot" },
+      -- { name = "treesitter" },
       -- { name = "buffer" },
       { name = "luasnip" },
       -- { name = "nvim_lua" },
