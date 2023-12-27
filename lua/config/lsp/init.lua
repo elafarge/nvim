@@ -5,44 +5,12 @@ local servers = {
   html = {},
   jsonls = {},
   rust_analyzer = {},
-  -- csharp_ls = {},
-  omnisharp = {
-    on_attach = function(client)
-      local tokenModifiers = client.server_capabilities.semanticTokensProvider.legend.tokenModifiers
-      for i, v in ipairs(tokenModifiers) do
-        tokenModifiers[i] = v:gsub(' ', '_'):gsub('-_', '')
-      end
-      local tokenTypes = client.server_capabilities.semanticTokensProvider.legend.tokenTypes
-      for i, v in ipairs(tokenTypes) do
-        tokenTypes[i] = v:gsub(' ', '_'):gsub('-_', '')
-      end
-      client.server_capabilities.semanticTokensProvider.legend.tokenModifiers = tokenModifiers
-      client.server_capabilities.semanticTokensProvider.legend.tokenTypes = tokenTypes
-    end
-  },
+  omnisharp = {},
   tsserver = {},
   vimls = {},
   terraformls = {},
   tflint = {},
-  lua_ls = {
-    settings = {
-      Lua = {
-        completion = {
-          callSnippet = "Replace"
-        },
-        diagnostics = {
-          globals = { 'vim' }
-        },
-        workspace = {
-          -- Make the server aware of Neovim runtime files
-          library = {
-            [vim.fn.expand "/usr/share/nvim/runtime/lua"] = true,
-            [vim.fn.expand "/usr/share/nvim/runtime/lua/vim/lsp"] = true,
-          },
-        },
-      }
-    }
-  },
+  lua_ls = {},
   yamlls = {},
 }
 
@@ -117,9 +85,9 @@ function M.setup()
   -- Diagnostic signs
   local diagnostic_signs = {
     { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn",  text = "" },
-    { name = "DiagnosticSignHint",  text = "" },
-    { name = "DiagnosticSignInfo",  text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignInfo", text = "" },
   }
   for _, sign in ipairs(diagnostic_signs) do
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })

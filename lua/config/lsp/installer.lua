@@ -15,7 +15,30 @@ function M.setup(servers, options)
   }
 
   require("mason-tool-installer").setup {
-    ensure_installed = { "stylua", "shfmt", "shellcheck", "omnisharp", "prettierd", "gospel", "golangci-lint" },
+    ensure_installed = {
+      "delve",
+      "gofumpt",
+      "goimports",
+      "golangci-lint",
+      "gopls",
+      "gospel",
+      "helm-ls",
+      "helm-ls",
+      "html-lsp",
+      "json-lsp",
+      "lua-language-server",
+      "omnisharp",
+      "prettierd",
+      "python-lsp-server",
+      "shellcheck",
+      "shfmt",
+      "stylua",
+      "terraform-ls",
+      "tflint",
+      "typescript-language-server",
+      "vim-language-server",
+      "yaml-language-server",
+    },
     auto_update = true,
     run_on_start = true,
   }
@@ -37,15 +60,6 @@ function M.setup(servers, options)
     ["jdtls"] = function()
       -- print "jdtls is handled by nvim-jdtls"
     end,
-    -- ["csharp_ls"] = function()
-    --   lspconfig.csharp_ls.setup({
-    --     settings = {
-    --       csharp = {
-    --         solution = "/home/etienne/Code/gopigment/monorepo/apps/all.sln"
-    --       }
-    --     }
-    --   })
-    -- end,
     ["omnisharp"] = function()
       lspconfig.omnisharp.setup({
         on_attach = function(client, bufnr)
@@ -88,7 +102,27 @@ function M.setup(servers, options)
     end,
     ["lua_ls"] = function()
       local opts = vim.tbl_deep_extend("force", options, servers["lua_ls"] or {})
-      lspconfig.lua_ls.setup(opts)
+      lspconfig.lua_ls.setup(
+        {
+          settings = {
+            Lua = {
+              completion = {
+                callSnippet = "Replace"
+              },
+              diagnostics = {
+                globals = { 'vim' }
+              },
+              workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = {
+                  [vim.fn.expand "/usr/share/nvim/runtime/lua"] = true,
+                  [vim.fn.expand "/usr/share/nvim/runtime/lua/vim/lsp"] = true,
+                },
+              },
+            }
+          }
+        }
+      )
     end,
     ["tsserver"] = function()
       local opts = vim.tbl_deep_extend("force", options, servers["tsserver"] or {})
@@ -100,6 +134,14 @@ function M.setup(servers, options)
     end,
     ["yamlls"] = function()
       lspconfig.yamlls.setup({
+        on_attach = function(_, bufnr)
+          if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
+            vim.diagnostic.disable(bufnr)
+            vim.defer_fn(function()
+              vim.diagnostic.reset(nil, bufnr)
+            end, 1000)
+          end
+        end,
         settings = {
           yaml = {
             keyOrdering = false,

@@ -84,8 +84,9 @@ function M.setup()
       { name = "luasnip" },
       -- { name = "nvim_lua" },
       { name = "path" },
+      -- { name = "cmdline" },
       -- { name = "spell" },
-      -- { name = "emoji" },
+      { name = "emoji" },
       -- { name = "calc" },
     },
     window = {
@@ -93,21 +94,21 @@ function M.setup()
     },
   }
 
-  -- Use buffer source for `/`
-  -- cmp.setup.cmdline("/", {
-  --   sources = {
-  --     { name = "buffer" },
-  --   },
-  -- })
+  -- Use buffer source for `/`.
+  cmp.setup.cmdline("/", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = { { name = "buffer" } },
+  })
 
   -- Use cmdline & path source for ':'
-  -- cmp.setup.cmdline(":", {
-  --   sources = cmp.config.sources({
-  --     { name = "path" },
-  --   }, {
-  --     { name = "cmdline" },
-  --   }),
-  -- })
+  cmp.setup.cmdline(":", {
+    completion = { autocomplete = false, },
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = "path" },
+      { name = "cmdline" },
+    }
+  })
 end
 
 return M

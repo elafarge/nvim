@@ -296,8 +296,8 @@ function M.setup()
       event = "InsertEnter",
       config = function()
         require("copilot").setup({
-          suggestion = { enabled = false },
-          panel = { enabled = false },
+          suggestion = { enabled = true },
+          panel = { enabled = true },
         })
       end,
     },
@@ -369,7 +369,8 @@ function M.setup()
         "Gist" }
     },
 
-
+    -- Syntax plugins
+    'towolf/vim-helm',
 
     -- Old stylish plugings, maybe to be replaced with nicer, faster more recent
     -- lua ones
