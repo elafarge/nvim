@@ -27,8 +27,8 @@ return {
         "stylua", -- lua formatter
         "black", -- python formatter
         "pylint", -- python linter
-        "eslint_d", -- js linter
-        "tflint",
+        "eslint_d",
+        "terraform_fmt",
         "shellcheck",
         "shfmt",
       },
@@ -37,7 +37,6 @@ return {
     -- for conciseness
     local formatting = null_ls.builtins.formatting -- to setup formatters
     local diagnostics = null_ls.builtins.diagnostics -- to setup linters
-    local hover = null_ls.builtins.diagnostics -- to setup linters
 
     -- to setup format on save
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -107,12 +106,17 @@ return {
           extra_filetypes = { "svelte" },
         }), -- js/ts formatter
         formatting.stylua, -- lua formatter
+
+        -- Python
         formatting.isort,
         formatting.black,
+
+        -- Shell
         formatting.shfmt,
         formatting.gofmt,
         formatting.goimports,
         formatting.golines,
+        formatting.terraform_fmt,
 
         -- Diagnosticts
 
@@ -136,13 +140,7 @@ return {
             group = augroup,
             buffer = bufnr,
             callback = function()
-              vim.lsp.buf.format({
-                filter = function(client)
-                  --  only use null-ls for formatting instead of lsp server
-                  return client.name == "null-ls"
-                end,
-                bufnr = bufnr,
-              })
+              vim.lsp.buf.format({ async = false })
             end,
           })
         end

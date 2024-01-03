@@ -45,7 +45,7 @@ return {
 
       l = {
         name = "Code",
-        F = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format Document" },
+        F = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format Document" },
         a = { "<cmd>Telescope lsp_code_actions<CR>", "Code Action" },
         d = { "<cmd>Telescope diagnostics<CR>", "Diagnostics" },
         r = { "<cmd>Telescope lsp_references<CR>", "References" },

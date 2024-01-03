@@ -1,5 +1,9 @@
 return {
   "zbirenbaum/copilot.lua",
+  dependencies = {
+    -- Use Copilot as a CMP completion source
+    "zbirenbaum/copilot-cmp",
+  },
   cmd = "Copilot",
   event = "InsertEnter",
   config = function()
