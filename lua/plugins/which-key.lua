@@ -14,7 +14,7 @@ return {
         border = "double",
         position = "botton",
       },
-      triggers = { "<leader>", "<CR>", "<Semicolon>", ";", ",", "g", "m" },
+      triggers = { "<leader>", "<BSlash>", "<Semicolon>", ";", ",", "g", "m" },
     })
 
     local super_mapping_opts = {
@@ -55,7 +55,7 @@ return {
 
     local goto_mapping_opts = {
       mode = "n", -- Normal mode
-      prefix = "<CR>",
+      prefix = "<BSlash>",
       buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
       silent = true, -- use `silent` when creating keymaps
       noremap = true, -- use `noremap` when creating keymaps
