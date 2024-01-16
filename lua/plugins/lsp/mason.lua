@@ -2,7 +2,7 @@ return {
   "williamboman/mason.nvim",
   dependencies = {
     -- Detect the helm filetype and use Helm LS for it
-    "towolf/vim-helm",
+    { "towolf/vim-helm", ft = "helm" },
     "neovim/nvim-lspconfig",
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
@@ -96,20 +96,6 @@ return {
               },
             },
           },
-        })
-      end,
-
-      ["yamlls"] = function()
-        lspconfig["yamlls"].setup({
-          capabilities = capabilities,
-          on_attach = function(_, bufnr)
-            -- Disable YAMLLS diagnostics for Helm files
-            if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
-              local client = vim.lsp.get_active_clients({ name = "yamlls" })[1]
-              local ns = vim.lsp.diagnostic.get_namespace(client.id)
-              vim.diagnostic.disable(bufnr, ns)
-            end
-          end,
         })
       end,
     })
