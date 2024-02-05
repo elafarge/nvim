@@ -1,15 +1,11 @@
 return {
   "zbirenbaum/copilot.lua",
-  dependencies = {
-    -- Use Copilot as a CMP completion source
-    "zbirenbaum/copilot-cmp",
-  },
   cmd = "Copilot",
   event = "InsertEnter",
   config = function()
     require("copilot").setup({
-      suggestion = { enabled = true },
-      panel = { enabled = true, auto_refresh = true },
+      suggestion = { enabled = false }, -- interferes with copilot CMP completion
+      panel = { enabled = false }, -- interferes with copilot CMP completion
       filetypes = {
         yaml = true,
       },

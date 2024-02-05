@@ -8,10 +8,14 @@ return {
     "saadparwaiz1/cmp_luasnip", -- for autocompletion
     "rafamadriz/friendly-snippets", -- useful snippets
     "onsails/lspkind.nvim", -- vs-code like pictograms
-    "zbirenbaum/copilot-cmp", -- Github copilot
+    -- Use Copilot as a CMP completion source
+    "zbirenbaum/copilot-cmp",
   },
   config = function()
     local cmp = require("cmp")
+
+    -- setup the Gopilot CMP completion source as well
+    require("copilot_cmp").setup({})
 
     local luasnip = require("luasnip")
 
@@ -44,10 +48,9 @@ return {
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip" }, -- snippets
+        { name = "copilot" }, -- github copilot
         { name = "buffer" }, -- text within current buffer
         { name = "path" }, -- file system paths
-        { name = "copilot" }, -- github copilot
-        { name = "emoji" },
       }),
 
       -- configure lspkind for vs-code like pictograms in completion menu
