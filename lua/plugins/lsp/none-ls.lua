@@ -18,6 +18,7 @@ return {
         "goimports",
         "golangci-lint",
         "golines",
+        "gci",
         "hadolint",
         "prettierd",
         "stylua", -- lua formatter
@@ -61,7 +62,10 @@ return {
 
         -- Shell
         formatting.shfmt,
+
+        -- Golang
         formatting.gofmt,
+        formatting.gofumpt,
         formatting.goimports,
         formatting.golines,
         formatting.terraform_fmt,
