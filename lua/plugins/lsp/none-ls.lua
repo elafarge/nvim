@@ -24,9 +24,7 @@ return {
         "stylua", -- lua formatter
         "black", -- python formatter
         "pylint", -- python linter
-        "eslint_d",
         "terraform_fmt",
-        "shellcheck",
         "shfmt",
       },
     })
@@ -73,12 +71,6 @@ return {
         -- Diagnosticts
 
         diagnostics.pylint,
-        diagnostics.eslint_d.with({ -- js/ts linter
-          condition = function(utils)
-            return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
-          end,
-        }),
-        diagnostics.shellcheck,
         diagnostics.golangci_lint,
         diagnostics.hadolint,
       },

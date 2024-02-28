@@ -33,6 +33,7 @@ return {
     mason_lspconfig.setup({
       ensure_installed = {
         "bashls",
+        "eslint_d",
         "gopls",
         "helm_ls",
         "html",
