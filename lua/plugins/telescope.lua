@@ -32,6 +32,7 @@ return {
     })
 
     telescope.load_extension("fzf")
+    telescope.load_extension("emoji")
 
     -- set keymaps
     local keymap = vim.keymap -- for conciseness

@@ -51,6 +51,7 @@ return {
         { name = "copilot" }, -- github copilot
         { name = "buffer" }, -- text within current buffer
         { name = "path" }, -- file system paths
+        { name = "emoji" }, -- emoji sources coming from emoji.nvim
       }),
 
       -- configure lspkind for vs-code like pictograms in completion menu
