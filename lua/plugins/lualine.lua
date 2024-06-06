@@ -1,10 +1,6 @@
-local function separator()
-  return "%="
-end
-
 local function lsp_client(msg)
   msg = msg or ""
-  local buf_clients = vim.lsp.buf_get_clients()
+  local buf_clients = vim.lsp.get_clients()
   if next(buf_clients) == nil then
     if type(msg) == "boolean" or #msg == 0 then
       return ""
@@ -12,7 +8,6 @@ local function lsp_client(msg)
     return msg
   end
 
-  local buf_ft = vim.bo.filetype
   local buf_client_names = {}
 
   -- add client
@@ -41,26 +36,11 @@ local function lsp_client(msg)
   return "[" .. table.concat(buf_client_names, ", ") .. "]"
 end
 
-local function lsp_progress(_, is_active)
+local function lsp_status(_, is_active)
   if not is_active then
-    return
-  end
-  local messages = vim.lsp.util.get_progress_messages()
-  if #messages == 0 then
     return ""
   end
-  local status = {}
-  for _, msg in pairs(messages) do
-    local title = ""
-    if msg.title then
-      title = msg.title
-    end
-    table.insert(status, (msg.percentage or 0) .. "%% " .. title)
-  end
-  local spinners = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
-  local ms = vim.loop.hrtime() / 1000000
-  local frame = math.floor(ms / 120) % #spinners
-  return table.concat(status, "  ") .. " " .. spinners[frame + 1]
+  require("lsp-progress").progress()
 end
 
 return {
@@ -84,7 +64,7 @@ return {
         lualine_a = { "mode" },
         lualine_b = { "branch", "diff", "diagnostics" },
         lualine_c = {
-          { 'filename', path=1 }, 
+          { "filename", path = 1 },
         },
         lualine_x = {
           {
@@ -92,8 +72,8 @@ return {
             cond = lazy_status.has_updates,
             color = { fg = "#ff9e64" },
           },
-          { lsp_client,  icon = " " },
-          { lsp_progress },
+          { lsp_client, icon = " " },
+          { lsp_status },
           { "fileformat" },
           { "filetype" },
         },
