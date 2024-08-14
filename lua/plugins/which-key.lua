@@ -10,94 +10,159 @@ return {
     local whichkey = require("which-key")
 
     whichkey.setup({
-      window = {
+      win = {
         border = "double",
-        position = "botton",
       },
-      triggers = { "<leader>", "<BSlash>", "<Semicolon>", ";", ",", "g", "m" },
+      -- triggers = {
+      --   { "<leader>", mode = "n" },
+      --   { "<BSlash>", mode = "n" },
+      --   { "<Semicolon>", mode = "n" },
+      --   { ";", mode = "n" },
+      --   { ",", mode = "n" },
+      --   { "g", mode = "n" },
+      --   { "m", mode = "n" },
+      -- },
     })
 
-    local super_mapping_opts = {
-      mode = "n", -- Normal mode
-      prefix = "<leader>",
-      buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-      silent = true, -- use `silent` when creating keymaps
-      noremap = true, -- use `noremap` when creating keymaps
-      nowait = false, -- use `nowait` when creating keymaps
-    }
+    local super_mapping_opts = nil
 
     local super_mappings = {
-      ["w"] = { "<cmd>update!<CR>", "Save" },
-      ["q"] = { "<cmd>q!<CR>", "Quit" },
-
-      f = {
-        name = "Find",
-        f = { "<cmd>Telescope find_files<cr>", "Files" },
-        b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-        o = { "<cmd>Telescope oldfiles<cr>", "Old Files" },
-        g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-        c = { "<cmd>Telescope commands<cr>", "Commands" },
-        r = { "<cmd>Telescope file_browser<cr>", "Browser" },
-        w = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Current Buffer" },
-        e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+      { "<leader>f", group = "Find", nowait = false, remap = false },
+      {
+        "<leader>fb",
+        "<cmd>Telescope buffers<cr>",
+        desc = "Buffers",
+        nowait = false,
+        prefix = "<leader>",
+        remap = false,
+        silent = true,
       },
-
-      l = {
-        name = "Code",
-        F = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format Document" },
-        a = { "<cmd>Telescope lsp_code_actions<CR>", "Code Action" },
-        d = { "<cmd>Telescope diagnostics<CR>", "Diagnostics" },
-        r = { "<cmd>Telescope lsp_references<CR>", "References" },
-        i = { "<cmd>LspInfo<CR>", "Lsp Info" },
+      {
+        "<leader>fc",
+        "<cmd>Telescope commands<cr>",
+        desc = "Commands",
+        nowait = false,
+        remap = false,
+        silent = true,
+        prefix = "<leader>",
       },
-      g = {
-        name = "+Git",
-        h = {
-          name = "+Github",
-          v = { "<cmd>GHToggleViewed<cr>", "Toggle Viewed" },
-          c = {
-            name = "+Commits",
-            c = { "<cmd>GHCloseCommit<cr>", "Close" },
-            e = { "<cmd>GHExpandCommit<cr>", "Expand" },
-            o = { "<cmd>GHOpenToCommit<cr>", "Open To" },
-            p = { "<cmd>GHPopOutCommit<cr>", "Pop Out" },
-            z = { "<cmd>GHCollapseCommit<cr>", "Collapse" },
-          },
-          i = {
-            name = "+Issues",
-            p = { "<cmd>GHPreviewIssue<cr>", "Preview" },
-          },
-          l = {
-            name = "+Litee",
-            t = { "<cmd>LTPanel<cr>", "Toggle Panel" },
-          },
-          r = {
-            name = "+Review",
-            b = { "<cmd>GHStartReview<cr>", "Begin" },
-            c = { "<cmd>GHCloseReview<cr>", "Close" },
-            d = { "<cmd>GHDeleteReview<cr>", "Delete" },
-            e = { "<cmd>GHExpandReview<cr>", "Expand" },
-            s = { "<cmd>GHSubmitReview<cr>", "Submit" },
-            z = { "<cmd>GHCollapseReview<cr>", "Collapse" },
-          },
-          p = {
-            name = "+Pull Request",
-            c = { "<cmd>GHClosePR<cr>", "Close" },
-            d = { "<cmd>GHPRDetails<cr>", "Details" },
-            e = { "<cmd>GHExpandPR<cr>", "Expand" },
-            o = { "<cmd>GHOpenPR<cr>", "Open" },
-            p = { "<cmd>GHPopOutPR<cr>", "PopOut" },
-            r = { "<cmd>GHRefreshPR<cr>", "Refresh" },
-            t = { "<cmd>GHOpenToPR<cr>", "Open To" },
-            z = { "<cmd>GHCollapsePR<cr>", "Collapse" },
-          },
-          t = {
-            name = "+Threads",
-            c = { "<cmd>GHCreateThread<cr>", "Create" },
-            n = { "<cmd>GHNextThread<cr>", "Next" },
-            t = { "<cmd>GHToggleThread<cr>", "Toggle" },
-          },
-        },
+      {
+        "<leader>fe",
+        "<cmd>NvimTreeToggle<cr>",
+        desc = "Explorer",
+        nowait = false,
+        remap = false,
+        silent = true,
+        prefix = "<leader>",
+      },
+      {
+        "<leader>ff",
+        "<cmd>Telescope find_files<cr>",
+        desc = "Files",
+        nowait = false,
+        remap = false,
+        silent = true,
+        prefix = "<leader>",
+      },
+      {
+        "<leader>fg",
+        "<cmd>Telescope live_grep<cr>",
+        desc = "Live Grep",
+        nowait = false,
+        remap = false,
+        prefix = "<leader>",
+        silent = true,
+      },
+      {
+        "<leader>fo",
+        "<cmd>Telescope oldfiles<cr>",
+        desc = "Old Files",
+        nowait = false,
+        remap = false,
+        silent = true,
+        prefix = "<leader>",
+      },
+      {
+        "<leader>fr",
+        "<cmd>Telescope file_browser<cr>",
+        desc = "Browser",
+        nowait = false,
+        remap = false,
+        silent = true,
+        prefix = "<leader>",
+      },
+      {
+        "<leader>fw",
+        "<cmd>Telescope current_buffer_fuzzy_find<cr>",
+        desc = "Current Buffer",
+        nowait = false,
+        remap = false,
+        prefix = "<leader>",
+        silent = true,
+      },
+      { "<leader>l", group = "Code", nowait = false, remap = false },
+      {
+        "<leader>lF",
+        "<cmd>lua vim.lsp.buf.format()<CR>",
+        desc = "Format Document",
+        nowait = false,
+        remap = false,
+        prefix = "<leader>",
+        silent = true,
+      },
+      {
+        "<leader>la",
+        "<cmd>Telescope lsp_code_actions<CR>",
+        desc = "Code Action",
+        nowait = false,
+        remap = false,
+        prefix = "<leader>",
+        silent = true,
+      },
+      {
+        "<leader>ld",
+        "<cmd>Telescope diagnostics<CR>",
+        desc = "Diagnostics",
+        nowait = false,
+        prefix = "<leader>",
+        remap = false,
+        silent = true,
+      },
+      {
+        "<leader>li",
+        "<cmd>LspInfo<CR>",
+        desc = "Lsp Info",
+        nowait = false,
+        remap = false,
+        prefix = "<leader>",
+        silent = true,
+      },
+      {
+        "<leader>lr",
+        "<cmd>Telescope lsp_references<CR>",
+        desc = "References",
+        nowait = false,
+        prefix = "<leader>",
+        remap = false,
+        silent = true,
+      },
+      {
+        "<leader>q",
+        "<cmd>q!<CR>",
+        desc = "Quit",
+        nowait = false,
+        remap = false,
+        prefix = "<leader>",
+        silent = true,
+      },
+      {
+        "<leader>w",
+        "<cmd>update!<CR>",
+        desc = "Save",
+        nowait = false,
+        remap = false,
+        prefix = "<leader>",
+        silent = true,
       },
     }
 
@@ -111,20 +176,73 @@ return {
     }
 
     local goto_mappings = {
-      name = "LSP",
-
-      a = { "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
-      h = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "Hover documentation" },
-      d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
-      D = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Goto Declaration" },
-      s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
-      I = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto Implementation" },
-      t = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition" },
-      R = { "<cmd>lua vim.lsp.buf.references()<CR>", "Goto References" },
-      r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
+      { "<BSlash>", group = "LSP", nowait = false, remap = false },
+      {
+        "<BSlash>D",
+        "<Cmd>lua vim.lsp.buf.declaration()<CR>",
+        desc = "Goto Declaration",
+        nowait = false,
+        remap = false,
+      },
+      {
+        "<BSlash>I",
+        "<cmd>lua vim.lsp.buf.implementation()<CR>",
+        desc = "Goto Implementation",
+        nowait = false,
+        remap = false,
+      },
+      {
+        "<BSlash>R",
+        "<cmd>lua vim.lsp.buf.references()<CR>",
+        desc = "Goto References",
+        nowait = false,
+        remap = false,
+      },
+      {
+        "<BSlash>a",
+        "<Cmd>lua vim.lsp.buf.code_action()<CR>",
+        desc = "Code Actions",
+        nowait = false,
+        remap = false,
+      },
+      {
+        "<BSlash>d",
+        "<Cmd>lua vim.lsp.buf.definition()<CR>",
+        desc = "Goto Definition",
+        nowait = false,
+        remap = false,
+      },
+      {
+        "<BSlash>h",
+        "<Cmd>lua vim.lsp.buf.hover()<CR>",
+        desc = "Hover documentation",
+        nowait = false,
+        remap = false,
+      },
+      {
+        "<BSlash>r",
+        "<cmd>lua vim.lsp.buf.rename()<CR>",
+        desc = "Rename",
+        nowait = false,
+        remap = false,
+      },
+      {
+        "<BSlash>s",
+        "<cmd>lua vim.lsp.buf.signature_help()<CR>",
+        desc = "Signature Help",
+        nowait = false,
+        remap = false,
+      },
+      {
+        "<BSlash>t",
+        "<cmd>lua vim.lsp.buf.type_definition()<CR>",
+        desc = "Goto Type Definition",
+        nowait = false,
+        remap = false,
+      },
     }
 
-    whichkey.register(super_mappings, super_mapping_opts)
-    whichkey.register(goto_mappings, goto_mapping_opts)
+    whichkey.add(super_mappings)
+    whichkey.add(goto_mappings)
   end,
 }
