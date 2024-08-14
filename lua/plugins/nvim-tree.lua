@@ -40,7 +40,7 @@ return {
         open_file = {
           resize_window = false,
           window_picker = {
-            enable = false,
+            enable = true,
           },
         },
       },
@@ -62,7 +62,7 @@ return {
         sync = {
           open = true,
           close = false,
-        }
+        },
       },
       -- Set keybindings, only for the nvim-tree buffer of course
       on_attach = function(bufnr)
@@ -70,10 +70,10 @@ return {
         local keymap = vim.keymap -- for conciseness
 
         local function opts(desc)
-          return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+          return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
         end
 
-        keymap.set('n', '<F5>', ':NvimTreeToggle<CR>', opts('Toggle Nvim Tree'))
+        keymap.set("n", "<F5>", ":NvimTreeToggle<CR>", opts("Toggle Nvim Tree"))
 
         -- keymap.set('n', '<C-]>', api.tree.change_root_to_node, opts('CD'))
         -- keymap.set('n', '<C-e>', api.node.open.replace_tree_buffer, opts('Open: In Place'))
@@ -129,22 +129,20 @@ return {
         -- keymap.set('n', '<2-RightMouse>', api.tree.change_root_to_node, opts('CD'))
         -- END_DEFAULT_ON_ATTACH
 
-
         -- Mappings migrated from view.mappings.list
-        keymap.set('n', '<CR>', api.node.open.no_window_picker, opts('Open: No Window Picker'))
-        keymap.set('n', '<2-Leftmouse>', api.node.open.no_window_picker, opts('Open: No Window Picker'))
-        keymap.set('n', 's', api.node.open.horizontal, opts('Open: Horizontal Split'))
-        keymap.set('n', 'v', api.node.open.vertical, opts('Open: Vertical Split'))
-        keymap.set('n', 't', api.node.open.tab, opts('Open: New Tab'))
-        keymap.set('n', 'a', api.fs.create, opts('Create'))
-        keymap.set('n', 'd', api.fs.remove, opts('Delete'))
-        keymap.set('n', 'r', api.fs.rename, opts('Rename'))
-        keymap.set('n', 'x', api.fs.cut, opts('Cut'))
-        keymap.set('n', 'y', api.fs.copy.node, opts('Copy'))
-        keymap.set('n', 'p', api.fs.paste, opts('Paste'))
-        keymap.set('n', 'c', api.tree.change_root_to_node, opts('CD'))
-      end
+        keymap.set("n", "<CR>", api.node.open.no_window_picker, opts("Open: No Window Picker"))
+        keymap.set("n", "<2-Leftmouse>", api.node.open.no_window_picker, opts("Open: No Window Picker"))
+        keymap.set("n", "s", api.node.open.horizontal, opts("Open: Horizontal Split"))
+        keymap.set("n", "v", api.node.open.vertical, opts("Open: Vertical Split"))
+        keymap.set("n", "t", api.node.open.tab, opts("Open: New Tab"))
+        keymap.set("n", "a", api.fs.create, opts("Create"))
+        keymap.set("n", "d", api.fs.remove, opts("Delete"))
+        keymap.set("n", "r", api.fs.rename, opts("Rename"))
+        keymap.set("n", "x", api.fs.cut, opts("Cut"))
+        keymap.set("n", "y", api.fs.copy.node, opts("Copy"))
+        keymap.set("n", "p", api.fs.paste, opts("Paste"))
+        keymap.set("n", "c", api.tree.change_root_to_node, opts("CD"))
+      end,
     })
-
   end,
 }
