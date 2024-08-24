@@ -39,6 +39,7 @@ return {
         "html",
         "jsonls",
         "lua_ls",
+        "nil_ls",
         "omnisharp",
         "pylsp",
         "terraformls",
